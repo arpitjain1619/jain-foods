@@ -1,0 +1,26 @@
+{
+  "name": "jain-foods",
+  "version": "1.0.0",
+  "description": "Jain Foods is a modern food delivery web application, offering restaurant browsing, menu exploration, cart management, and online ordering.",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arpitjain1619/jain-foods.git"
+  },
+  "author": "Arpit Jain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arpitjain1619/jain-foods/issues"
+  },
+  "homepage": "https://github.com/arpitjain1619/jain-foods#readme",
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  }
+}
