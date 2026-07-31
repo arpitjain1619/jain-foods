@@ -1,5 +1,5 @@
 const RestaurantCard = (props) => {
-  const { name, image, rating, cuisine, costText } = props.resData.info;
+  const { name, image, rating, cuisine, costText } = props.restaurantData.info;
 
   const cuisines = cuisine
     .map(({ name }) => {
@@ -14,7 +14,7 @@ const RestaurantCard = (props) => {
       <h4>{cuisines}</h4>
       <h4>{rating.aggregate_rating}</h4>
       <h4>{costText.text}</h4>
-      <h4>{props.resData.distance}</h4>
+      <h4>{props.restaurantData.distance}</h4>
     </div>
   );
 };
