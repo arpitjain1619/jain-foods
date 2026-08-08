@@ -44,3 +44,9 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.nav-item {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
