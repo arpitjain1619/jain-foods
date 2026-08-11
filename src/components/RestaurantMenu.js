@@ -1,6 +1,4 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { SWIGGY_GET_MENU_API_URL } from "../utils/constants";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
