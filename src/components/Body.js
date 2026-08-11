@@ -1,32 +1,18 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
-import { TOP_RATING, SWIGGY_GET_API_URL } from "../utils/constants";
+import { TOP_RATING } from "../utils/constants";
+import { Link } from "react-router-dom";
+import useRestaurantList from "../utils/useRestaurantList";
 
 const Body = () => {
-  const [restaurantList, setRestaurantList] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
-  const [searchText, setSearchText] = useState([]);
+
+  const restaurantList = useRestaurantList();
 
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const restaurantListFetch = await fetch(SWIGGY_GET_API_URL);
-    const restaurantListData = await restaurantListFetch.json();
-
-    let restaurants =
-      restaurantListData?.data?.cards?.flatMap((card) => {
-        const grid = card?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-
-        return Array.isArray(grid) ? grid : [];
-      }) ?? [];
-
-    restaurants = restaurants.filter((restaurant) => !restaurant["@type"]);
-
-    setRestaurantList(restaurants);
-    setFilteredRestaurantList(restaurants);
-  };
+    setFilteredRestaurantList(restaurantList);
+  }, [restaurantList]);
 
   return (
     <div className="body">
@@ -42,11 +28,10 @@ const Body = () => {
             className="filter-btn"
             onClick={() => {
               const searchedRestaurantList = restaurantList.filter(
-                (restaurant) => {
-                  return restaurant.info.name
+                (restaurant) =>
+                  restaurant.info.name
                     .toLowerCase()
-                    .includes(searchText.toLowerCase());
-                },
+                    .includes(searchText.toLowerCase()),
               );
 
               setFilteredRestaurantList(searchedRestaurantList);
@@ -61,9 +46,7 @@ const Body = () => {
             setSearchText("");
 
             const topRatedRestaurantList = restaurantList
-              .filter((restaurant) => {
-                return restaurant.info.avgRating > TOP_RATING;
-              })
+              .filter((restaurant) => restaurant.info.avgRating > TOP_RATING)
               .sort((a, b) => b.info.avgRating - a.info.avgRating);
 
             setFilteredRestaurantList(topRatedRestaurantList);
@@ -75,10 +58,13 @@ const Body = () => {
       <div className="res-container">
         {filteredRestaurantList.map((restaurant) => {
           return (
-            <RestaurantCard
+            <Link
+              className="res-card-item"
               key={restaurant.info.id}
-              restaurantData={restaurant}
-            />
+              to={`/restaurants/${restaurant.info.id}`}
+            >
+              <RestaurantCard restaurantData={restaurant} />
+            </Link>
           );
         })}
       </div>
