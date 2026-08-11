@@ -29,6 +29,11 @@ const Header = () => {
               Cart
             </Link>
           </li>
+          <li>
+            <Link className="nav-item" to="/instamart">
+              Instamart
+            </Link>
+          </li>
         </ul>
       </div>
     </div>
