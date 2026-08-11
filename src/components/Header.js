@@ -1,4 +1,5 @@
 import logo from "url:../../assets/logo/logo.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -8,10 +9,26 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
+          <li>
+            <Link className="nav-item" to="/">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-item" to="/about">
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-item" to="/contact">
+              Contact Us
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-item" to="/coming-soon">
+              Cart
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

@@ -106,3 +106,8 @@ AppLayout
 ## Data Source Note
 
 Restaurant information and images are loaded from Swiggy endpoints for learning purposes. Because this application depends on a third-party response shape and browser access policy, data loading may stop working if that API or policy changes.
+
+## Types Of Routing
+
+- Client Side Routing
+- Server Side Routing
