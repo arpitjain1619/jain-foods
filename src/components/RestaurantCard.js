@@ -7,17 +7,17 @@ const RestaurantCard = (props) => {
   const cuisinesAll = cuisines.join(", ");
 
   return (
-    <div className="res-card">
+    <div className="m-8 p-4 w-75 h-135 bg-gray-100 hover:bg-gray-200 rounded-md">
       <img
-        className="res-logo"
+        className="w-70 h-64"
         src={`${SWIGGY_IMAGE_CDN_BASE_URL}${cloudinaryImageId}`}
         alt="Restaurant Logo"
       ></img>
-      <h3>{name}</h3>
-      <h4>{avgRating}</h4>
-      <h4>{costForTwo}</h4>
-      <h4>{locality}</h4>
-      <h4>{cuisinesAll}</h4>
+      <h3 className="font-bold my-2">{name}</h3>
+      <h4 className="my-3">{avgRating}</h4>
+      <h4 className="my-3">{costForTwo}</h4>
+      <h4 className="my-3">{locality}</h4>
+      <h4 className="my-3">{cuisinesAll}</h4>
     </div>
   );
 };
