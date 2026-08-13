@@ -3,34 +3,34 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="header">
+    <div className="flex justify-between">
       <div className="logo-container">
-        <img className="logo" src={logo} alt="Jain Foods" />
+        <img className="w-50" src={logo} alt="Jain Foods" />
       </div>
-      <div className="nav-items">
-        <ul>
+      <div className="flex items-start">
+        <ul className="flex p-5 m-5 text-2xl">
           <li>
-            <Link className="nav-item" to="/">
+            <Link className="font-bold m-3" to="/">
               Home
             </Link>
           </li>
           <li>
-            <Link className="nav-item" to="/about">
+            <Link className="font-bold m-3" to="/about">
               About Us
             </Link>
           </li>
           <li>
-            <Link className="nav-item" to="/contact">
+            <Link className="font-bold m-3" to="/contact">
               Contact Us
             </Link>
           </li>
           <li>
-            <Link className="nav-item" to="/coming-soon">
+            <Link className="font-bold m-3" to="/coming-soon">
               Cart
             </Link>
           </li>
           <li>
-            <Link className="nav-item" to="/instamart">
+            <Link className="font-bold m-3" to="/instamart">
               Instamart
             </Link>
           </li>
