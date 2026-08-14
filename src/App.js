@@ -7,7 +7,7 @@ import AboutUs from "./components/AboutUs";
 import Contact from "./components/Contact";
 import ComingSoon from "./components/ComingSoon";
 import Error from "./components/Error";
-import RestaurantMenu from "./components/RestaurantMenu";
+import RestaurantDetails from "./components/RestaurantDetails";
 
 const AppLayout = () => {
   return (
@@ -51,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/restaurants/:resId",
-        element: <RestaurantMenu />,
+        element: <RestaurantDetails />,
       },
     ],
     errorElement: <Error />,

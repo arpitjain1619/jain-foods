@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between shadow-md">
       <div className="logo-container">
-        <img className="w-50" src={logo} alt="Jain Foods" />
+        <img className="w-25" src={logo} alt="Jain Foods" />
       </div>
       <div className="flex items-start">
         <ul className="flex p-5 m-5 text-2xl">
