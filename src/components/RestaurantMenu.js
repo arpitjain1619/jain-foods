@@ -1,17 +1,44 @@
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import MenuItemHeader from "./MenuItemHeader";
+import MenuItemDetails from "./MenuItemDetails";
 
-const RestaurantMenu = () => {
-  const { resId } = useParams();
+const RestaurantMenu = ({ menuItems, isOpen }) => {
+  const [showIndex, setShowIndex] = useState(null);
 
-  return (
-    <div>
-      <h1>Name - {resId}</h1>
-      <h2>Location</h2>
-      <h2>Menu:</h2>
-      <h3>Paneer 65</h3>
-      <h3>Paneer Tikka</h3>
-    </div>
-  );
+  const itemCategory = [
+    "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory",
+  ];
+
+  const handleClick = (index) => {
+    index === showIndex ? setShowIndex(null) : setShowIndex(index);
+  };
+
+  const menu = menuItems.filter((menuItem) => {
+    return itemCategory.includes(menuItem.card.card["@type"]);
+  });
+
+  if (menu.length > 0) {
+    return menu.map((menuItem, index) => {
+      const menuItemList = menuItem.card.card;
+
+      return (
+        itemCategory.includes(menuItemList["@type"]) && (
+          <div key={index} className="mb-5">
+            <MenuItemHeader
+              index={index}
+              menuItemList={menuItemList}
+              handleClick={handleClick}
+            />
+            <MenuItemDetails
+              index={index}
+              showIndex={showIndex}
+              menuItemList={menuItemList}
+            />
+          </div>
+        )
+      );
+    });
+  }
 };
 
 export default RestaurantMenu;
