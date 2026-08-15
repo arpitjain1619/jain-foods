@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { SWIGGY_IMAGE_CDN_BASE_URL } from "../utils/constants";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const RestaurantHeader = (props) => {
   const data = props.data;
+
+  const { loggedInUserName } = useContext(UserContext);
 
   const createCuisineSlug = (cuisine, city) => {
     const baseUrl = "https://www.swiggy.com/city/";
@@ -18,7 +22,12 @@ const RestaurantHeader = (props) => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-5">{data.name}</h1>
+      <h1 className="text-3xl font-bold mb-5">
+        {data.name}
+        <span className="ml-2 text-green-600">
+          ({`${loggedInUserName}'s favorite restaurant`})
+        </span>
+      </h1>
       <div className="w-full h-80 overflow-hidden mb-5">
         <img
           src={`${SWIGGY_IMAGE_CDN_BASE_URL}${data.cloudinaryImageId}`}

@@ -1,7 +1,11 @@
 import logo from "url:../../assets/logo/logo.png";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
+  const { loggedInUserName } = useContext(UserContext);
+
   return (
     <div className="flex justify-between shadow-md">
       <div className="logo-container">
@@ -34,6 +38,7 @@ const Header = () => {
               Instamart
             </Link>
           </li>
+          <li className="font-bold text-green-600">{loggedInUserName}</li>
         </ul>
       </div>
     </div>

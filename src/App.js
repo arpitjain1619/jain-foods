@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,13 +8,37 @@ import Contact from "./components/Contact";
 import ComingSoon from "./components/ComingSoon";
 import Error from "./components/Error";
 import RestaurantDetails from "./components/RestaurantDetails";
+import UserContext from "./utils/UserContext";
 
 const AppLayout = () => {
+  const [userDetails, setUserDetails] = useState();
+
+  useEffect(() => {
+    // Make an API call to authenticate user and get the logged in user details
+    const userData = {
+      name: "Arpit Jain",
+      intereset: "React",
+    };
+
+    setUserDetails(userData);
+  }, []);
+
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    // Before this Provider, the default Context value is "User"
+    <UserContext.Provider value={{ loggedInUserName: userDetails?.name }}>
+      {/* loggedInUserName => Arpit Jain 
+          Parent Provider changes the Context value to "Arpit Jain" */}
+      <div className="app">
+        <UserContext.Provider value={{ loggedInUserName: "Jain's Food" }}>
+          {/* loggedInUserName => Jain's Food
+              Nested Provider overrides the parent value for Header only as "Jain's Food" */}
+          <Header />
+        </UserContext.Provider>
+        {/* loggedInUserName => Arpit Jain 
+            Outlet is outside the nested Provider, so it gets the parent value "Arpit Jain" */}
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 
