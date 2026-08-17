@@ -3,7 +3,7 @@ import MenuItemHeader from "./MenuItemHeader";
 import MenuItemDetails from "./MenuItemDetails";
 
 const RestaurantMenu = ({ menuItems, isOpen }) => {
-  const [showIndex, setShowIndex] = useState(null);
+  const [showIndex, setShowIndex] = useState(0);
 
   const itemCategory = [
     "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory",

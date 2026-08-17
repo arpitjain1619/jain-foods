@@ -10,6 +10,32 @@ const Body = () => {
 
   const restaurantList = useRestaurantList();
 
+  const handleTopRatedRestaurantsClick = () => {
+    setSearchText("");
+
+    const topRatedRestaurantList = restaurantList
+      .filter((restaurant) => restaurant.info.avgRating > TOP_RATING)
+      .sort((a, b) => b.info.avgRating - a.info.avgRating);
+
+    setFilteredRestaurantList(topRatedRestaurantList);
+  };
+
+  const handleSearchClick = () => {
+    const searchedRestaurantList = restaurantList.filter((restaurant) =>
+      restaurant.info.name.toLowerCase().includes(searchText.toLowerCase()),
+    );
+
+    setFilteredRestaurantList(searchedRestaurantList);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key !== "Enter") {
+      return;
+    }
+
+    handleSearchClick();
+  };
+
   useEffect(() => {
     setFilteredRestaurantList(restaurantList);
   }, [restaurantList]);
@@ -19,39 +45,23 @@ const Body = () => {
       <div className="flex mb-10">
         <div>
           <input
-            className="border p-1 rounded-sm"
+            className="p-2 rounded-lg w-100 bg-gray-200 focus-visible:border-none"
             type="text"
             placeholder="Search..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <button
             className="border ml-2 px-2 py-1 cursor-pointer bg-blue-200 rounded-sm"
-            onClick={() => {
-              const searchedRestaurantList = restaurantList.filter(
-                (restaurant) =>
-                  restaurant.info.name
-                    .toLowerCase()
-                    .includes(searchText.toLowerCase()),
-              );
-
-              setFilteredRestaurantList(searchedRestaurantList);
-            }}
+            onClick={handleSearchClick}
           >
             Search
           </button>
         </div>
         <button
           className="border ml-20 w-52 cursor-pointer bg-blue-200 rounded-sm"
-          onClick={() => {
-            setSearchText("");
-
-            const topRatedRestaurantList = restaurantList
-              .filter((restaurant) => restaurant.info.avgRating > TOP_RATING)
-              .sort((a, b) => b.info.avgRating - a.info.avgRating);
-
-            setFilteredRestaurantList(topRatedRestaurantList);
-          }}
+          onClick={handleTopRatedRestaurantsClick}
         >
           Top Rated Restaurants
         </button>
